@@ -1,2 +1,4 @@
-package Abcs;public class Paciente {
+package Abcs;
+
+public class Paciente {
 }

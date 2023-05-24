@@ -1,2 +1,7 @@
-package Abcs;public class Menu {
+package Abcs;
+import java.awt.*;
+import javax.swing.*;
+public class Menu extends JFrame{
+    private JMenuBar menuBar;
+
 }
