@@ -1,4 +1,60 @@
 package Abcs;
 
-public class Empleado {
+public class Empleado extends Persona{
+    int numero_Empleado, salario;
+    String cargo, puesto, supervisor;
+    public Empleado(){
+        this.numero_Empleado = 0;
+        this.salario = 0;
+        this.cargo = "";
+        this.puesto = "";
+        this.supervisor = "";
+    }
+    public Empleado(String nombre, String genero, String nacionalidad, String estadoCivil, String telefono, String correo, int edad, int numero_Empleado, int salario, String cargo, String puesto, String supervisor){
+        super(nombre, genero, nacionalidad, estadoCivil, telefono, correo, edad);
+        this.numero_Empleado = numero_Empleado;
+        this.salario = salario;
+        this.cargo = cargo;
+        this.puesto = puesto;
+        this.supervisor = supervisor;
+    }
+    public int getNumero_Empleado() {
+        return numero_Empleado;
+    }
+
+    public void setNumero_Empleado(int numero_Empleado) {
+        this.numero_Empleado = numero_Empleado;
+    }
+
+    public int getSalario() {
+        return salario;
+    }
+
+    public void setSalario(int salario) {
+        this.salario = salario;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+
+    public String getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
 }

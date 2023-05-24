@@ -7,6 +7,7 @@ import java.sql.*;
 public class Login extends JFrame implements ActionListener{
     JButton loginButton = new JButton("Acceder");
     JButton registerButton = new JButton("Registrarse");
+    JLabel imagenLabel = new JLabel();
     Connection con = null;
     private JLabel usuarioLabel, passwordLabel;
     private JTextField usuarioTextField;
@@ -47,7 +48,11 @@ public class Login extends JFrame implements ActionListener{
             throw new RuntimeException(e);
         }
         //Interfaz
-        setSize(300, 200);
+        //PlaceHolder luego lo cambio 👍👍👍👍
+        imagenLabel.setIcon(new ImageIcon("src/Abcs/images/Jhon.jpg"));
+        Image img = Toolkit.getDefaultToolkit().getImage("src/Abcs/images/gato.png");
+        setIconImage(img);
+        setSize(300, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
          usuarioLabel = new JLabel("Username: ");
@@ -56,12 +61,14 @@ public class Login extends JFrame implements ActionListener{
          passwordText = new JPasswordField(15);
         loginButton.addActionListener(this);
         registerButton.addActionListener(this);
+        add(imagenLabel);
         add(usuarioLabel);
         add(usuarioTextField);
         add(passwordLabel);
         add(passwordText);
         add(loginButton);
         add(registerButton);
+        setResizable(false);
         setVisible(true);
     }
 

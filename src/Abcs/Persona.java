@@ -13,6 +13,17 @@ public class Persona {
         this.correo = "";
         this.edad = 0;
     }
+
+    public Persona(String nombre, String genero, String nacionalidad, String estadoCivil, String telefono, String correo, int edad) {
+        this.nombre = nombre;
+        this.genero = genero;
+        this.nacionalidad = nacionalidad;
+        this.estadoCivil = estadoCivil;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.edad = edad;
+    }
+
     public String getNombre() {
         return nombre;
     }
