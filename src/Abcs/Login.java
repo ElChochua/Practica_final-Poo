@@ -41,7 +41,7 @@ public class Login extends JFrame implements ActionListener{
                     "password=06440566;"+
                     "trustServerCertificate=True;");//Esta linea es para validar el certificado de seguridad
 
-            JOptionPane.showMessageDialog(null, "Conexión exitosa");
+            JOptionPane.showMessageDialog(null, "Conexión con la BD exitosa");
         }catch(SQLException sqlEx){
             JOptionPane.showMessageDialog(null, sqlEx.toString());
         } catch (ClassNotFoundException e) {

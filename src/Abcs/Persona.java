@@ -1,12 +1,12 @@
 package Abcs;
 
 public class Persona {
-    private String nombre, genero, nacionalidad, estadoCivil,
+    private String nombre, sexo, nacionalidad, estadoCivil,
     telefono,correo;
     private int edad;
     public Persona(){
         this.nombre = "";
-        this.genero = "";
+        this.sexo = "";
         this.nacionalidad = "";
         this.estadoCivil = "";
         this.telefono = "";
@@ -16,7 +16,7 @@ public class Persona {
 
     public Persona(String nombre, String genero, String nacionalidad, String estadoCivil, String telefono, String correo, int edad) {
         this.nombre = nombre;
-        this.genero = genero;
+        this.sexo = genero;
         this.nacionalidad = nacionalidad;
         this.estadoCivil = estadoCivil;
         this.telefono = telefono;
@@ -32,12 +32,12 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getNacionalidad() {

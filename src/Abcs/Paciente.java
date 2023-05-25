@@ -1,7 +1,7 @@
 package Abcs;
 
 public class Paciente extends Persona{
-    String tipoSangre, alergias, enfermedades, antecedentes, ocupacion,peso, estatura;
+    String tipoSangre, alergias, enfermedades, antecedentes, ocupacion, peso, estatura;
     public Paciente(){
         this.tipoSangre = "";
         this.alergias = "";
@@ -11,8 +11,8 @@ public class Paciente extends Persona{
         this.peso = "";
         this.estatura = "";
     }
-    public Paciente(String tipoSangre, String alergias, String enfermedades, String antecedentes, String ocupacion, String peso, String estatura, String nombre, String genero, String nacionalidad, String estadoCivil, String telefono, String correo, int edad){
-        super(nombre, genero, nacionalidad, estadoCivil, telefono, correo, edad);
+    public Paciente(String tipoSangre, String alergias, String enfermedades, String antecedentes, String ocupacion, String peso, String estatura, String nombre, String sexo, String nacionalidad, String estadoCivil, String telefono, String correo, int edad){
+        super(nombre, sexo, nacionalidad, estadoCivil, telefono, correo, edad);
         this.tipoSangre = tipoSangre;
         this.alergias = alergias;
         this.enfermedades = enfermedades;

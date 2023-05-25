@@ -10,8 +10,8 @@ public class Empleado extends Persona{
         this.puesto = "";
         this.supervisor = "";
     }
-    public Empleado(String nombre, String genero, String nacionalidad, String estadoCivil, String telefono, String correo, int edad, int numero_Empleado, int salario, String cargo, String puesto, String supervisor){
-        super(nombre, genero, nacionalidad, estadoCivil, telefono, correo, edad);
+    public Empleado(String nombre, String sexo, String nacionalidad, String estadoCivil, String telefono, String correo, int edad, int numero_Empleado, int salario, String cargo, String puesto, String supervisor){
+        super(nombre, sexo, nacionalidad, estadoCivil, telefono, correo, edad);
         this.numero_Empleado = numero_Empleado;
         this.salario = salario;
         this.cargo = cargo;
