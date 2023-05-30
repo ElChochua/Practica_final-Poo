@@ -9,9 +9,7 @@ public class gestorEmpleados extends JFrame implements ActionListener {
     private JButton botonRegreso,buscarId,buscarNombre,modificar, eliminar,agregar;
     private JTextField campoId, campoNombre, campoApellido, campoEdad, campoPuesto, campoSalario;
     private JPanel panel_Derechaa, panel_Izquierda, panel_Botones;
-    public void agregarEmpleado(){
-        //Aqui se agregara un empleado
-    }
+
 
     public static void main(String[] args) {
         new gestorEmpleados();

@@ -141,8 +141,10 @@ public class Inventario extends javax.swing.JFrame {
         existencias_TextField.setEditable(false);
 
         descripcion_TextArea.setColumns(20);
+        descripcion_TextArea.setLineWrap(true);
         descripcion_TextArea.setRows(5);
         jScrollPane2.setViewportView(descripcion_TextArea);
+        descripcion_TextArea.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

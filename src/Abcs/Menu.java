@@ -25,24 +25,39 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        biblioteca_Boton = new javax.swing.JButton();
+        hostpital_Boton = new javax.swing.JButton();
+        empleados_Boton = new javax.swing.JButton();
+        inventario_Boton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Biblioteca");
-
-        jButton2.setText("Reservaciones");
-
-        jButton3.setText("Gestor Empleados");
-
-        jButton4.setText("Pacientes");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        biblioteca_Boton.setText("Biblioteca");
+        biblioteca_Boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                biblioteca_BotonActionPerformed(evt);
+            }
+        });
+
+        hostpital_Boton.setText("Hospital");
+        hostpital_Boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hostpital_BotonActionPerformed(evt);
+            }
+        });
+
+        empleados_Boton.setText("Gestor Empleados");
+        empleados_Boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empleados_BotonActionPerformed(evt);
+            }
+        });
+
+        inventario_Boton.setText("Inventario");
+        inventario_Boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inventario_BotonActionPerformed(evt);
             }
         });
 
@@ -57,12 +72,12 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(empleados_Boton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(biblioteca_Boton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(hostpital_Boton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inventario_Boton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -75,13 +90,13 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(177, 177, 177)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(biblioteca_Boton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inventario_Boton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(hostpital_Boton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(empleados_Boton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(103, Short.MAX_VALUE))
@@ -90,9 +105,29 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void inventario_BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventario_BotonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        dispose();
+        new Inventario().setVisible(true);
+    }//GEN-LAST:event_inventario_BotonActionPerformed
+
+    private void empleados_BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleados_BotonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new GestorEmpleadoss().setVisible(true);
+    }//GEN-LAST:event_empleados_BotonActionPerformed
+
+    private void hostpital_BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostpital_BotonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Hospitall().setVisible(true);
+    }//GEN-LAST:event_hostpital_BotonActionPerformed
+
+    private void biblioteca_BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_biblioteca_BotonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Biblioteca().setVisible(true);
+    }//GEN-LAST:event_biblioteca_BotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,10 +165,10 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton biblioteca_Boton;
+    private javax.swing.JButton empleados_Boton;
+    private javax.swing.JButton hostpital_Boton;
+    private javax.swing.JButton inventario_Boton;
     private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }
