@@ -2,7 +2,7 @@
 package Abcs;
 
 public class Libro {
-    private String sinopsis, titulo, autor, codigo_Id,generos, fecha_Lanzamiento;
+    private String sinopsis, titulo, autor,editorial, codigo_Id,generos, fecha_Lanzamiento;
     private int paginas;
     public Libro(){
         this.titulo = "";
@@ -21,6 +21,18 @@ public class Libro {
         this.generos = generos;
         this.fecha_Lanzamiento = fecha_Lanzamiento;
         this.paginas = paginas;
+    }
+    public void setEditorial(String editorial){
+        this.editorial = editorial;
+    }
+    public String getEditorial(){
+        return editorial;
+    }
+    public void setSinopsis(String sinopsis){
+        this.sinopsis = sinopsis;
+    }
+    public String getSinopsis(){
+        return sinopsis;
     }
 
     public String getTitulo() {

@@ -77,4 +77,6 @@ public class Paciente extends Persona{
     public void setEstatura(String estatura) {
         this.estatura = estatura;
     }
+
+
 }

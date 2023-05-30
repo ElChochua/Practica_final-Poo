@@ -4,6 +4,13 @@
  */
 package Abcs;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jossu
@@ -13,8 +20,12 @@ public class Hospitall extends javax.swing.JFrame {
     /**
      * Creates new form Hospitall
      */
+    private Paciente paciente = new Paciente();
+    private List<Paciente> pacientes = new ArrayList<Paciente>();
+    private AdministradorBD conectorBD = new AdministradorBD();
     public Hospitall() {
         initComponents();
+        conectorBD.conectar();
     }
 
     /**
@@ -42,9 +53,9 @@ public class Hospitall extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         altura_TextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        contacto_TextField = new javax.swing.JTextField();
+        telefono_TextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        genero_TextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         nacionalida_TextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -52,21 +63,42 @@ public class Hospitall extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         estado_TextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        antecedentes_TextArea = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        alergias_TextField = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        enfermedades_TextField = new javax.swing.JTextField();
+        boton_Pruebas = new javax.swing.JButton();
 
         jLabel8.setText("jLabel8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         boton_AgregarPaciente.setText("Agregar");
+        boton_AgregarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_AgregarPacienteActionPerformed(evt);
+            }
+        });
         jPanel1.add(boton_AgregarPaciente);
 
         boton_BuscarPaciente.setText("Buscar");
+        boton_BuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_BuscarPacienteActionPerformed(evt);
+            }
+        });
         jPanel1.add(boton_BuscarPaciente);
 
         boton_Eliminar.setText("Eliminar");
+        boton_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_EliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(boton_Eliminar);
 
         jButton4.setText("<--Anterior");
@@ -75,55 +107,235 @@ public class Hospitall extends javax.swing.JFrame {
         jButton5.setText("Siguiente-->");
         jPanel1.add(jButton5);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 406, 620, 45));
-
         jLabel1.setText("Nombre:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 52, -1, -1));
-        getContentPane().add(nombre_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 49, 170, -1));
 
         jLabel2.setText("Grupo Sanguíneo:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 86, -1, -1));
-        getContentPane().add(tipoSangre_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 83, 93, -1));
 
         jLabel3.setText("Peso:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 126, -1, -1));
-        getContentPane().add(peso_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 123, 84, -1));
 
         jLabel4.setText("Altura:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 151, -1, -1));
-        getContentPane().add(altura_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 151, 83, -1));
 
         jLabel5.setText("Contacto De Emergencia:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 366, -1, -1));
-        getContentPane().add(contacto_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 366, 166, -1));
 
         jLabel6.setText("Genero:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 185, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 207, 41, -1));
 
         jLabel7.setText("Nacionalidad:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, -1, -1));
-        getContentPane().add(nacionalida_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 257, 144, -1));
 
         jLabel9.setText("Edad:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 291, -1, -1));
-        getContentPane().add(edad_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 313, 60, -1));
 
         jLabel10.setText("Estado Civil:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 126, -1, -1));
-        getContentPane().add(estado_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 151, 112, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 114, -1, 240));
+        antecedentes_TextArea.setColumns(20);
+        antecedentes_TextArea.setRows(5);
+        jScrollPane1.setViewportView(antecedentes_TextArea);
 
         jLabel11.setText("Historial Medico");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 86, 208, -1));
+
+        jLabel12.setText("Alergias");
+
+        jLabel13.setText("Enfermedades");
+
+        boton_Pruebas.setText("Pruebas");
+        boton_Pruebas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_PruebasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(12, 12, 12)
+                .addComponent(telefono_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(12, 12, 12)
+                        .addComponent(tipoSangre_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(212, 212, 212)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(12, 12, 12)
+                                .addComponent(peso_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(6, 6, 6)
+                                .addComponent(altura_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(estado_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(genero_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(alergias_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(91, 91, 91)
+                                .addComponent(jLabel13))
+                            .addComponent(jLabel9)
+                            .addComponent(edad_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nacionalida_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(enfermedades_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombre_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boton_Pruebas)
+                        .addGap(151, 151, 151))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel1))
+                            .addComponent(nombre_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(boton_Pruebas)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tipoSangre_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel11))))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(peso_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel10))))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(altura_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estado_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel12)))
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(genero_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(alergias_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel13)))
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nacionalida_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(enfermedades_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel9)
+                        .addGap(6, 6, 6)
+                        .addComponent(edad_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(telefono_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boton_AgregarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_AgregarPacienteActionPerformed
+        // TODO add your handling code here:
+        paciente.setNombre(nombre_TextField.getText());
+        paciente.setSexo(genero_TextField.getText());
+        paciente.setEstadoCivil(estado_TextField.getText());
+        paciente.setTelefono(telefono_TextField.getText());
+        paciente.setTipoSangre(tipoSangre_TextField.getText());
+        paciente.setAlergias(alergias_TextField.getText());
+        paciente.setEnfermedades(enfermedades_TextField.getText());
+        paciente.setAntecedentes(antecedentes_TextArea.getText());
+        paciente.setEstatura(altura_TextField.getText());
+        paciente.setPeso(peso_TextField.getText());
+        try {
+            conectorBD.ejecutarConsulta("INSERT INTO Pacientes (nombre, edad, genero, nacionalidad, estadoCivil, telefono, tipoSangre, alergias, enfermedades, antecedentes, peso, altura)"
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", paciente.getNombre(),paciente.getEdad(),paciente.getSexo(),paciente.getNacionalidad(),paciente.getEstadoCivil()
+                    ,paciente.getTelefono(),paciente.getTipoSangre(),paciente.getAlergias(),paciente.getEnfermedades(),paciente.getAntecedentes(),paciente.getPeso(),paciente.getEstatura());
+            JOptionPane.showMessageDialog(null, "Paciente agregado correctamente.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al insertar empleado en la base de datos:\n" + ex.toString());
+        }
+    }//GEN-LAST:event_boton_AgregarPacienteActionPerformed
+
+    private void boton_PruebasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_PruebasActionPerformed
+        // TODO add your handling code here:
+        nombre_TextField.setText("Juan");
+        edad_TextField.setText("20");
+        genero_TextField.setText("Masculino");
+        nacionalida_TextField.setText("Mexicano");
+        estado_TextField.setText("Soltero");
+        telefono_TextField.setText("1234567890");
+        tipoSangre_TextField.setText("O+");
+        alergias_TextField.setText("Ninguna");
+        enfermedades_TextField.setText("Ninguna");
+        antecedentes_TextArea.setText("Ninguno");
+        peso_TextField.setText("70");
+        altura_TextField.setText("1.70");
+        
+    }//GEN-LAST:event_boton_PruebasActionPerformed
+
+    private void boton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_EliminarActionPerformed
+        // TODO add your handling code here:
+        try {
+            conectorBD.ejecutarConsulta("DELETE FROM Pacientes WHERE nombre = ?", nombre_TextField.getText());
+            JOptionPane.showMessageDialog(null, "Paciente eliminado correctamente.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar empleado en la base de datos:\n" + ex.toString());
+        }
+        
+    }//GEN-LAST:event_boton_EliminarActionPerformed
+
+    private void boton_BuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_BuscarPacienteActionPerformed
+        try (// TODO add your handling code here:
+        ResultSet rs = conectorBD.hacerBusqueda("Pacientes", "nombre",nombre_TextField.getText())) {
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar paciente en la base de datos:\n" + e.toString());
+        }
+    }//GEN-LAST:event_boton_BuscarPacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,18 +373,24 @@ public class Hospitall extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField alergias_TextField;
     private javax.swing.JTextField altura_TextField;
+    private javax.swing.JTextArea antecedentes_TextArea;
     private javax.swing.JButton boton_AgregarPaciente;
     private javax.swing.JButton boton_BuscarPaciente;
     private javax.swing.JButton boton_Eliminar;
-    private javax.swing.JTextField contacto_TextField;
+    private javax.swing.JButton boton_Pruebas;
     private javax.swing.JTextField edad_TextField;
+    private javax.swing.JTextField enfermedades_TextField;
     private javax.swing.JTextField estado_TextField;
+    private javax.swing.JTextField genero_TextField;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -183,11 +401,10 @@ public class Hospitall extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nacionalida_TextField;
     private javax.swing.JTextField nombre_TextField;
     private javax.swing.JTextField peso_TextField;
+    private javax.swing.JTextField telefono_TextField;
     private javax.swing.JTextField tipoSangre_TextField;
     // End of variables declaration//GEN-END:variables
 }
