@@ -72,7 +72,7 @@ public class gestorEmpleados extends JFrame implements ActionListener {
         //Boton para ir al Menu de inicio al presionarlo
         if(e.getSource() == botonRegreso){
             dispose();
-            new Menu();
+            new BarraMenu();
         }
     }
 }

@@ -1,7 +1,8 @@
 package Abcs;
 
 public class Empleado extends Persona{
-    int numero_Empleado, salario;
+    int numero_Empleado;
+    int salario;
     String cargo, puesto, supervisor;
     public Empleado(){
         this.numero_Empleado = 0;
@@ -18,43 +19,45 @@ public class Empleado extends Persona{
         this.puesto = puesto;
         this.supervisor = supervisor;
     }
-    public int getNumero_Empleado() {
-        return numero_Empleado;
-    }
 
     public void setNumero_Empleado(int numero_Empleado) {
         this.numero_Empleado = numero_Empleado;
-    }
-
-    public int getSalario() {
-        return salario;
     }
 
     public void setSalario(int salario) {
         this.salario = salario;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
     public void setCargo(String cargo) {
         this.cargo = cargo;
-    }
-
-    public String getPuesto() {
-        return puesto;
     }
 
     public void setPuesto(String puesto) {
         this.puesto = puesto;
     }
 
-    public String getSupervisor() {
-        return supervisor;
-    }
-
     public void setSupervisor(String supervisor) {
         this.supervisor = supervisor;
     }
+
+    public int getNumero_Empleado() {
+        return numero_Empleado;
+    }
+
+    public int getSalario() {
+        return salario;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public String getSupervisor() {
+        return supervisor;
+    }
+    
 }

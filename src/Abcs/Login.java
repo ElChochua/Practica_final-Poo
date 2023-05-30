@@ -1,64 +1,38 @@
 package Abcs;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.*;
-public class Login extends JFrame implements ActionListener{
+
+public class Login extends JFrame implements ActionListener {
+
+    private AdministradorBD conectorBD = new AdministradorBD();
     JButton loginButton = new JButton("Acceder");
     JButton registerButton = new JButton("Registrarse");
     JLabel imagenLabel = new JLabel();
-    Connection con = null;
     private JLabel usuarioLabel, passwordLabel;
     private JTextField usuarioTextField;
     private JPasswordField passwordText;
-    public int inicioSesion(String User, String Password){
-        Integer resultado = 0;
-        try{
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Login WHERE Nombre = '"+User+"' AND Contraseña = '"+Password+"'");
-            if(rs.next()) {
-                resultado = 1;
-                JOptionPane.showMessageDialog(null, "Bienvenido " + User + "!");
-            }else{
-                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
-                resultado = 0;
-            }
-        }catch(SQLException sqlEx){
-            JOptionPane.showMessageDialog(null, sqlEx.toString());
-        }
-        return resultado;
-    }
-    public Login() {
 
+    public Login() {
         super("Login");
         //Conexion
-        try{
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;" +
-                    "databaseName=Sesiones;" +
-                    "user=sa;" +
-                    "password=06440566;"+
-                    "trustServerCertificate=True;");//Esta linea es para validar el certificado de seguridad
-
-            JOptionPane.showMessageDialog(null, "Conexión con la BD exitosa");
-        }catch(SQLException sqlEx){
-            JOptionPane.showMessageDialog(null, sqlEx.toString());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        conectorBD.conectar();
         //Interfaz
         //PlaceHolder luego lo cambio 👍👍👍👍
-        imagenLabel.setIcon(new ImageIcon("src/Abcs/images/Jhon.jpg"));
+        imagenLabel.setIcon(new ImageIcon((getClass().getResource("/Abcs/Jhon.jpg"))));
         Image img = Toolkit.getDefaultToolkit().getImage("src/Abcs/images/gato.png");
         setIconImage(img);
         setSize(300, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-         usuarioLabel = new JLabel("Username: ");
-         usuarioTextField = new JTextField(15);
-         passwordLabel = new JLabel("Contraseña: ");
-         passwordText = new JPasswordField(15);
+        usuarioLabel = new JLabel("Username: ");
+        usuarioTextField = new JTextField(15);
+        passwordLabel = new JLabel("Contraseña: ");
+        passwordText = new JPasswordField(15);
         loginButton.addActionListener(this);
         registerButton.addActionListener(this);
         add(imagenLabel);
@@ -74,21 +48,30 @@ public class Login extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton) {
-                String pass = String.valueOf(passwordText.getPassword());
-                if(inicioSesion(usuarioTextField.getText(), pass) == 1){
-                    dispose();
-                    new Menu();
-                }
-        } else if(e.getSource() == registerButton) {
-            try{
-                String pass = String.valueOf(passwordText.getPassword());
-                String strSql = "INSERT INTO Login (Nombre, Contraseña) VALUES ('" + usuarioTextField.getText() + "','" + pass + "')";
-                Statement stmt = con.createStatement();
-                int rowsEffected = stmt.executeUpdate(strSql);
-                JOptionPane.showMessageDialog(null, "Usuario registrado");
-            }catch(SQLException ex){
+        if (e.getSource() == loginButton) {
+            String pass = String.valueOf(passwordText.getPassword());
+            if (conectorBD.validarLogin(usuarioTextField.getText(), pass)) {
+                dispose();
+                new Menu().setVisible(true);
+            }
+        } else if (e.getSource() == registerButton) {
+            String user, pass;
+            user = usuarioTextField.getText();
+            pass = String.valueOf(passwordText.getPassword());
+            try {
+                conectorBD.registrarUsuario(user, pass);
+            } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex.toString());
+            }
+        }
+    }
+
+    public void KeyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            String pass = String.valueOf(passwordText.getPassword());
+            if (conectorBD.validarLogin(usuarioTextField.getText(), pass)) {
+                dispose();
+                new Menu().setVisible(true);
             }
         }
     }

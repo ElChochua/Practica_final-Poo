@@ -1,5 +1,5 @@
 package Abcs;
-
+import java.sql.*;
 public class Persona {
     private String nombre, sexo, nacionalidad, estadoCivil,
     telefono,correo;
@@ -24,59 +24,61 @@ public class Persona {
         this.edad = edad;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getSexo() {
-        return sexo;
     }
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public String getNacionalidad() {
-        return nacionalidad;
-    }
-
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
-    }
-
-    public String getEstadoCivil() {
-        return estadoCivil;
     }
 
     public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public String getCorreo() {
-        return correo;
     }
 
     public void setCorreo(String correo) {
         this.correo = correo;
     }
 
-    public int getEdad() {
-        return edad;
-    }
-
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+    
+    
 }

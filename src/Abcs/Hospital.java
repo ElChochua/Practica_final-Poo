@@ -15,7 +15,7 @@ public class Hospital extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent actionEvent) {
         if(actionEvent.getSource() == botonRegreso){
             dispose();
-            new Menu();
+            new BarraMenu();
         }
     }
 }
